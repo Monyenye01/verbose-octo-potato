@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h3>Your Account Details</h3>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>TOTAL</th>
+        </tr>
+        
+        
+        {% for item in stocks %}
+        <tr>
+            {% for key, value in item.items() %}
+                {% if 'price' in key or 'total' in key %}
+                    <th>{{ value | usd }}</th>
+                {% else %}
+                    <th>{{ value }}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <th>CASH</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>{{ cash | usd }}</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>{{ total | usd }}</th>
+        </tr>
+        
+
+    </table>
+{% endblock %}
